@@ -1,0 +1,10 @@
+option java_package = "wang.gnim.excel";
+
+message biyunLevel { 
+    optional uint32 level = 1;
+    optional uint32 star1 = 2;
+    optional uint32 star2 = 3;
+    optional uint32 star3 = 4;
+    optional uint32 star4 = 5;
+    optional uint32 star5 = 6;
+}

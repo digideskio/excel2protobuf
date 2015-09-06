@@ -1,0 +1,7 @@
+import "biyunLevel.proto";
+
+option java_package = "wang.gnim.excel";
+
+message ExcelConfig { 
+    repeated biyunLevel biyunLevels = 1;
+}
