@@ -12,11 +12,11 @@ if len(sys.argv) > 2:
 if len(sys.argv) > 3:
     packageName = sys.argv[3]
 
-	
+
 print(excelDirName)
 print(protobufDirName)
 print(packageName)
-	
+
 protoNames = []
 
 for root, dirs, files in os.walk(excelDirName):
