@@ -16,7 +16,7 @@ if len(sys.argv) > 2:
 def loadObj(fileShortName):
 
     moduleName = protobufDirName + "/" + fileShortName + "_pb2.py"
-    print(moduleName)
+    print("moduleName : " + moduleName)
 
     module = imp.load_source(fileShortName, moduleName)
     claszz = getattr(module, fileShortName)
