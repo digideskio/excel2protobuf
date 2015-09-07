@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 __author__ = 'wanggnim'
 
 import xlrd
@@ -6,9 +6,9 @@ import sys
 import os
 
 if len(sys.argv) > 1:
-    excelDirName = sys.argv[1]
+    excelDirName = sys.argv[1]  + "/"
 if len(sys.argv) > 2:
-    protobufDirName = sys.argv[2]
+    protobufDirName = sys.argv[2]  + "/"
 if len(sys.argv) > 3:
     packageName = sys.argv[3]
 
@@ -21,7 +21,7 @@ protoNames = []
 
 for root, dirs, files in os.walk(excelDirName):
     for file in files:
-        data = xlrd.open_workbook(excelDirName + "/" + file)
+        data = xlrd.open_workbook(excelDirName + file)
         table = data.sheets()[0]
 
         fileShortName = file.split('.')[0]
