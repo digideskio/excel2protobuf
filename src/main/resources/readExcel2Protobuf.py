@@ -21,7 +21,7 @@ protoNames = []
 
 for root, dirs, files in os.walk(excelDirName):
     for file in files:
-        data = xlrd.open_workbook(excelDirName + file)
+        data = xlrd.open_workbook(excelDirName + "/" + file)
         table = data.sheets()[0]
 
         fileShortName = file.split('.')[0]
