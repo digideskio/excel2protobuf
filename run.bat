@@ -12,6 +12,6 @@ python ./src/main/resources/readExcel2Protobuf.py %excelHome% %protobufHome% "wa
 
 protoc-2.6.1-win32\protoc -I=%protobufHome% --java_out=%javaHome% --cpp_out=%cppHome% --python_out=%pythonHome% %protobufHome%/*.proto
 
-python ./src/main/resources/genDataFromExcelAndProtobuf.py %excelHome%
+python ./src/main/resources/genDataFromExcelAndProtobuf.py %excelHome% %protobufHome%
 
 pause
