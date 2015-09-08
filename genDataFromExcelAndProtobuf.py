@@ -36,9 +36,9 @@ for root, dirs, files in os.walk(excelDirName):
 
         obj = loadObj(fileShortName, fileShortName)
         t1 = getattr(configObj, fileShortName + "s")
-        add = t1.add()
 
         for index in range(3, table.nrows):
+            add = t1.add()
             row = table.row_values(index)
 
             titles = table.row_values(0)
@@ -61,8 +61,6 @@ for root, dirs, files in os.walk(excelDirName):
 
                 count += 1
 
-
-            # setattr(t2, fileShortName + "s.add()", obj)
 with open("./src/main/resources/data.pb", 'w+') as dataFile:
-    dataFile.write(bytes(configObj))
+    dataFile.write(configObj.SerializeToString())
     print(bytes(configObj))
