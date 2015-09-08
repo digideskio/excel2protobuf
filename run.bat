@@ -18,7 +18,7 @@ MKDIR  %pythonsHome%
 
 python readExcel2Protobuf.py %excelHome% %protobufHome% "wang.gnim.excel"
 
-protoc-2.6.1-win32\protoc -I=%protobufHome% --java_out=%javaHome% --cpp_out=%cppHome% --python_out=%pythonsHome% %protobufHome%\*.proto
+protoc -I=%protobufHome% --java_out=%javaHome% --cpp_out=%cppHome% --python_out=%pythonsHome% %protobufHome%\*.proto
 
 python genDataFromExcelAndProtobuf.py %excelHome% %pythonsHome%
 
