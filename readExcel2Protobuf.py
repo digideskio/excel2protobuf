@@ -6,9 +6,9 @@ import sys
 import os
 
 if len(sys.argv) > 1:
-    excelDirName = sys.argv[1]  + "/"
+    excelDirName = sys.argv[1] + "/"
 if len(sys.argv) > 2:
-    protobufDirName = sys.argv[2]  + "/"
+    protobufDirName = sys.argv[2] + "/"
 if len(sys.argv) > 3:
     packageName = sys.argv[3]
 
@@ -42,7 +42,7 @@ for root, dirs, files in os.walk(excelDirName):
             outFile.write("}\n")
 
 count = 1
-configFileName = protobufDirName + "ExcelConfig.proto"
+configFileName = protobufDirName + "config.proto"
 with open(configFileName, 'w+') as configFile:
 
     for protoName in protoNames:
