@@ -11,19 +11,20 @@ excelDirName = ""
 if len(sys.argv) > 1:
     excelDirName = sys.argv[1]
 if len(sys.argv) > 2:
-    protobufDirName = sys.argv[2]
+    pythonDirName = sys.argv[2]
+    sys.path.append(pythonDirName)
 
 def loadObj(fileShortName):
 
-    moduleName = protobufDirName + "/" + fileShortName + "_pb2.py"
-    print("moduleName : " + moduleName)
+    moduleName = pythonDirName + "/" + fileShortName + "_pb2.py"
+    print("moduleName : " + moduleName + "  fileShortName: " + fileShortName)
 
     module = imp.load_source(fileShortName, moduleName)
     claszz = getattr(module, fileShortName)
     obj = claszz()
     return obj
 
-configObj = loadObj("config")
+configObj = loadObj("ExcelConfig")
 
 for root, dirs, files in os.walk(excelDirName):
 

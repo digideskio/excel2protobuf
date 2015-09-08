@@ -3,8 +3,8 @@
 
 package wang.gnim.excel;
 
-public final class Config {
-  private Config() {}
+public final class ExcelConfigOuterClass {
+  private ExcelConfigOuterClass() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
@@ -113,14 +113,14 @@ public final class Config {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return wang.gnim.excel.Config.internal_static_ExcelConfig_descriptor;
+      return wang.gnim.excel.ExcelConfigOuterClass.internal_static_ExcelConfig_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return wang.gnim.excel.Config.internal_static_ExcelConfig_fieldAccessorTable
+      return wang.gnim.excel.ExcelConfigOuterClass.internal_static_ExcelConfig_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              wang.gnim.excel.Config.ExcelConfig.class, wang.gnim.excel.Config.ExcelConfig.Builder.class);
+              wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig.class, wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig.Builder.class);
     }
 
     public static com.google.protobuf.Parser<ExcelConfig> PARSER =
@@ -217,53 +217,53 @@ public final class Config {
       return super.writeReplace();
     }
 
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(byte[] data)
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(java.io.InputStream input)
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseDelimitedFrom(java.io.InputStream input)
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseDelimitedFrom(
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static wang.gnim.excel.Config.ExcelConfig parseFrom(
+    public static wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -272,7 +272,7 @@ public final class Config {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(wang.gnim.excel.Config.ExcelConfig prototype) {
+    public static Builder newBuilder(wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -289,20 +289,20 @@ public final class Config {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:ExcelConfig)
-        wang.gnim.excel.Config.ExcelConfigOrBuilder {
+        wang.gnim.excel.ExcelConfigOuterClass.ExcelConfigOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return wang.gnim.excel.Config.internal_static_ExcelConfig_descriptor;
+        return wang.gnim.excel.ExcelConfigOuterClass.internal_static_ExcelConfig_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return wang.gnim.excel.Config.internal_static_ExcelConfig_fieldAccessorTable
+        return wang.gnim.excel.ExcelConfigOuterClass.internal_static_ExcelConfig_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                wang.gnim.excel.Config.ExcelConfig.class, wang.gnim.excel.Config.ExcelConfig.Builder.class);
+                wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig.class, wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig.Builder.class);
       }
 
-      // Construct using wang.gnim.excel.Config.ExcelConfig.newBuilder()
+      // Construct using wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -338,23 +338,23 @@ public final class Config {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return wang.gnim.excel.Config.internal_static_ExcelConfig_descriptor;
+        return wang.gnim.excel.ExcelConfigOuterClass.internal_static_ExcelConfig_descriptor;
       }
 
-      public wang.gnim.excel.Config.ExcelConfig getDefaultInstanceForType() {
-        return wang.gnim.excel.Config.ExcelConfig.getDefaultInstance();
+      public wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig getDefaultInstanceForType() {
+        return wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig.getDefaultInstance();
       }
 
-      public wang.gnim.excel.Config.ExcelConfig build() {
-        wang.gnim.excel.Config.ExcelConfig result = buildPartial();
+      public wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig build() {
+        wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public wang.gnim.excel.Config.ExcelConfig buildPartial() {
-        wang.gnim.excel.Config.ExcelConfig result = new wang.gnim.excel.Config.ExcelConfig(this);
+      public wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig buildPartial() {
+        wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig result = new wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig(this);
         int from_bitField0_ = bitField0_;
         if (biyunLevelsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
@@ -370,16 +370,16 @@ public final class Config {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof wang.gnim.excel.Config.ExcelConfig) {
-          return mergeFrom((wang.gnim.excel.Config.ExcelConfig)other);
+        if (other instanceof wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig) {
+          return mergeFrom((wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(wang.gnim.excel.Config.ExcelConfig other) {
-        if (other == wang.gnim.excel.Config.ExcelConfig.getDefaultInstance()) return this;
+      public Builder mergeFrom(wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig other) {
+        if (other == wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig.getDefaultInstance()) return this;
         if (biyunLevelsBuilder_ == null) {
           if (!other.biyunLevels_.isEmpty()) {
             if (biyunLevels_.isEmpty()) {
@@ -418,11 +418,11 @@ public final class Config {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        wang.gnim.excel.Config.ExcelConfig parsedMessage = null;
+        wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (wang.gnim.excel.Config.ExcelConfig) e.getUnfinishedMessage();
+          parsedMessage = (wang.gnim.excel.ExcelConfigOuterClass.ExcelConfig) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -700,7 +700,7 @@ public final class Config {
     java.lang.String[] descriptorData = {
       "\n\021ExcelConfig.proto\032\020biyunLevel.proto\"/\n" +
       "\013ExcelConfig\022 \n\013biyunLevels\030\001 \003(\0132\013.biyu" +
-      "nLevelB\031\n\017wang.gnim.excelB\006Config"
+      "nLevelB\021\n\017wang.gnim.excel"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

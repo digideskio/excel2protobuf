@@ -12,11 +12,6 @@ if len(sys.argv) > 2:
 if len(sys.argv) > 3:
     packageName = sys.argv[3]
 
-
-print(excelDirName)
-print(protobufDirName)
-print(packageName)
-
 protoNames = []
 
 for root, dirs, files in os.walk(excelDirName):
@@ -47,7 +42,7 @@ for root, dirs, files in os.walk(excelDirName):
             outFile.write("}\n")
 
 count = 1
-configFileName = protobufDirName + "config.proto"
+configFileName = protobufDirName + "ExcelConfig.proto"
 with open(configFileName, 'w+') as configFile:
 
     for protoName in protoNames:
@@ -58,6 +53,8 @@ with open(configFileName, 'w+') as configFile:
 
     configFile.write("option java_package = \"" + packageName + "\";\n")
     configFile.write("\n")
+    # configFile.write("option java_outer_classname = \"Config\";\n")
+    # configFile.write("\n")
 
     configFile.write("message ExcelConfig { \n")
 
