@@ -7,10 +7,10 @@ set javaHome=%workbase%src\main\java
 set cppHome=%workbase%src\main\cpp
 set pythonsHome=%workbase%src\main\python
 
-RMDIR \S \Q %protobufHome%
-RMDIR \S \Q %javaHome%
-RMDIR \S \Q %cppHome%
-RMDIR \S \Q %pythonsHome%
+RMDIR /S /Q %protobufHome%
+RMDIR /S /Q %javaHome%
+RMDIR /S /Q %cppHome%
+RMDIR /S /Q %pythonsHome%
 MKDIR  %protobufHome%
 MKDIR  %javaHome%
 MKDIR  %cppHome%
