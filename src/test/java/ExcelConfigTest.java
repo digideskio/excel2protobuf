@@ -12,7 +12,7 @@ public class ExcelConfigTest {
 
     @Test
     public void testParse() {
-        File file = new File("D:\\workspace\\百度云同步盘\\project\\github\\excel2protobuf\\trunk\\src\\main\\resources\\data.pb");
+        File file = new File(".\\src\\main\\resources\\data.pb");
         try(InputStream in = new FileInputStream(file)) {
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
