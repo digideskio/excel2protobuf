@@ -63,4 +63,6 @@ for root, dirs, files in os.walk(excelDirName):
 
 with open("./src/main/resources/data.pb", 'w+') as dataFile:
     dataFile.write(configObj.SerializeToString())
-    print(bytes(configObj))
+
+with open("./src/main/resources/data.txt", 'w+') as dataFile:
+    dataFile.write(bytes(configObj))
