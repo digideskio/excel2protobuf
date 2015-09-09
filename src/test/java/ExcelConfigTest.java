@@ -15,10 +15,10 @@ import java.io.*;
 public class ExcelConfigTest {
 
     @Test
-    @Ignore
     public void testParse() {
         File file = new File(".\\src\\main\\resources\\data.pb");
         try(InputStream in = new FileInputStream(file)) {
+            in.read();
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
             System.out.println(config.getBiyunLevelsCount());
@@ -70,6 +70,7 @@ public class ExcelConfigTest {
     public void testParsePythonFile() {
         File file = new File(".\\src\\test\\python\\data.pb");
         try(InputStream in = new FileInputStream(file)) {
+            in.read();
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
             System.out.println("Python : " + config.getBiyunLevelsCount());
