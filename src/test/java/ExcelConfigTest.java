@@ -1,4 +1,5 @@
 import com.google.protobuf.ByteString;
+import org.apache.commons.io.FileUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 import wang.gnim.excel.Config;
@@ -56,4 +57,18 @@ public class ExcelConfigTest {
         }
     }
 
+    @Test
+    public void testParseCommonsIO() {
+        File file = new File(".\\src\\test\\python\\data.pb");
+        try {
+            byte[] bytes = FileUtils.readFileToByteArray(file);
+            Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(bytes);
+            System.out.println(config1.getBiyunLevelsCount());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

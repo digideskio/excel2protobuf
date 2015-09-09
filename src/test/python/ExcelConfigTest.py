@@ -1,11 +1,14 @@
-__author__ = 'wanggnim'
+# -*- coding: utf-8 -*-
 
+__author__ = 'wanggnim'
 
 import sys
 import os
 import imp
 
 sys.path.append("..\..\main\python")
+
+print(sys.getdefaultencoding())
 
 import config_pb2
 import biyunLevel_pb2
