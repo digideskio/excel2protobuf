@@ -1,5 +1,6 @@
 import com.google.protobuf.ByteString;
 import org.apache.commons.io.FileUtils;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import wang.gnim.excel.BiyunLevel;
@@ -32,35 +33,9 @@ public class ExcelConfigTest {
     }
 
     @Test
-    public void testParseByteString() {
-        File file = new File(".\\src\\test\\python\\data.pb");
-        try(InputStream in = new FileInputStream(file)) {
-            ByteString bs = ByteString.readFrom(in);
-            Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
-            System.out.println(config.getBiyunLevelsCount());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testParseInputStream() {
-        File file = new File(".\\src\\test\\python\\data.pb");
-        try(InputStream in = new FileInputStream(file)) {
-            Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(in);
-            System.out.println(config1.getBiyunLevelsCount());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
+    @Ignore
     public void testParseCommonsIO() {
-        File file = new File(".\\src\\test\\python\\data.pb");
+        File file = new File(".\\src\\test\\java\\data.pb");
         try {
             byte[] bytes = FileUtils.readFileToByteArray(file);
             Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(bytes);
@@ -73,29 +48,16 @@ public class ExcelConfigTest {
         }
     }
 
-    @Test
-    public void testParseEncode() {
-        File file = new File(".\\src\\test\\python\\data.txt");
-        try(InputStream in = new FileInputStream(file)) {
-            Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(in);
-            System.out.println(config1.getBiyunLevelsCount());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testGenerate() {
+    @Before
+    public void generateFile() {
         BiyunLevel.biyunLevel level = BiyunLevel.biyunLevel.newBuilder().setLevel(123456).build();
-        Config.ExcelConfig config1 = Config.ExcelConfig.newBuilder()
+        Config.ExcelConfig config = Config.ExcelConfig.newBuilder()
                 .addBiyunLevels(level)
                 .build();
 
-        File file = new File(".\\src\\test\\java\\data.txt");
+        File file = new File(".\\src\\test\\java\\data.pb");
         try(OutputStream out = new FileOutputStream(file)) {
-            out.write(config1.toByteArray());
+            out.write(config.toByteArray());
             out.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -103,4 +65,33 @@ public class ExcelConfigTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testParsePythonFile() {
+        File file = new File(".\\src\\test\\python\\data.pb");
+        try(InputStream in = new FileInputStream(file)) {
+            ByteString bs = ByteString.readFrom(in);
+            Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
+            System.out.println("Python : " + config.getBiyunLevelsCount());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testParseJavaFile() {
+        File file = new File(".\\src\\test\\java\\data.pb");
+        try(InputStream in = new FileInputStream(file)) {
+            ByteString bs = ByteString.readFrom(in);
+            Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
+            System.out.println("Java : " + config.getBiyunLevelsCount());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

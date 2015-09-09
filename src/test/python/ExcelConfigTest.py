@@ -8,7 +8,7 @@ import imp
 
 sys.path.append("..\..\main\python")
 
-print(sys.getdefaultencoding())
+print("DefaultEncoding : " + sys.getdefaultencoding())
 
 import config_pb2
 import biyunLevel_pb2
@@ -20,15 +20,7 @@ def readFromFile():
         # print(content)
         excelConfig1 = excelConfig.ParseFromString(content)
 
-def readFromJavaFile():
-    excelConfig = config_pb2.ExcelConfig()
-    with open("../java/data.txt", 'rb') as dapaPB:
-        content = dapaPB.read()
-        excelConfig.ParseFromString(content)
-        biyunLevel1 = excelConfig.biyunLevels[0]
-        print(biyunLevel1.level)
-
-def readFromMemory():
+def write2File():
     excelConfig = config_pb2.ExcelConfig()
 
     biyunLevel = excelConfig.biyunLevels.add()
@@ -36,25 +28,28 @@ def readFromMemory():
 
     content = excelConfig.SerializeToString()
 
-    excelConfig1 = config_pb2.ExcelConfig()
-    excelConfig1.ParseFromString(content)
-    biyunLevel1 = excelConfig1.biyunLevels[0]
-    print(biyunLevel1.level)
-
-    with open("./data.txt", 'w+') as dapaPB:
-        dapaPB.write(bytes(excelConfig))
-
     with open("./data.pb", 'w+') as dapaPB:
         dapaPB.write(content)
 
+def readFromJavaFile():
+    excelConfig = config_pb2.ExcelConfig()
+    with open("../java/data.pb", 'rb') as dapaPB:
+        content = dapaPB.read()
+        excelConfig.ParseFromString(content)
+        biyunLevel1 = excelConfig.biyunLevels[0]
+        print("Java: " + str(biyunLevel1.level))
+
+def readFromPythonFile():
+    write2File();
     with open("./data.pb", 'r+') as dapaPB:
         content1 = dapaPB.read()
         excelConfig2 = config_pb2.ExcelConfig()
         excelConfig2.ParseFromString(content1)
         biyunLevel2 = excelConfig2.biyunLevels[0]
-        print(biyunLevel2.level)
+        print("Python: " + str(biyunLevel2.level))
 
-# readFromMemory()
 # readFromFile()
+write2File()
+readFromPythonFile()
 readFromJavaFile()
 
