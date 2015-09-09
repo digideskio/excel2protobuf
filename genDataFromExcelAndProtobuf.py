@@ -30,35 +30,38 @@ for root, dirs, files in os.walk(excelDirName):
 
     for file in files:
         data = xlrd.open_workbook(excelDirName + file)
-        table = data.sheets()[0]
 
-        fileShortName = file.split('.')[0]
+        for table in data.sheets():
 
-        obj = loadObj(fileShortName, fileShortName)
-        t1 = getattr(configObj, fileShortName + "s")
+            fileShortName = table.name.encode("utf-8")
 
-        for index in range(3, table.nrows):
-            add = t1.add()
-            row = table.row_values(index)
+            fileShortName = file.split('.')[0]
 
-            titles = table.row_values(0)
-            types = table.row_values(1)
-            count = 0
-            for title in titles:
-                if "" == title:
-                    continue
+            obj = loadObj(fileShortName, fileShortName)
+            t1 = getattr(configObj, fileShortName + "s")
 
-                cellValue = row[count]
-                if cellValue == "":
-                    break
+            for index in range(3, table.nrows):
+                add = t1.add()
+                row = table.row_values(index)
 
-                type = types[count]
-                count += 1
-                if hasattr(obj, title):
-                    if type == "uint32":
-                        setattr(add, title, (int)(cellValue))
-                    elif type == "string":
-                        setattr(add, title, (str)(cellValue))
+                titles = table.row_values(0)
+                types = table.row_values(1)
+                count = 0
+                for title in titles:
+                    if "" == title:
+                        continue
+
+                    cellValue = row[count]
+                    if cellValue == "":
+                        break
+
+                    type = types[count]
+                    count += 1
+                    if hasattr(obj, title):
+                        if type == "uint32":
+                            setattr(add, title, (int)(cellValue))
+                        elif type == "string":
+                            setattr(add, title, (str)(cellValue))
 
 with open("./src/main/resources/data.pb", 'w+') as dataFile:
     dataFile.write(configObj.SerializeToString())

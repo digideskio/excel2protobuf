@@ -17,8 +17,7 @@ def readFromFile():
     excelConfig = config_pb2.ExcelConfig()
     with open("../../main/resources/data.pb", 'rb') as dapaPB:
         content = dapaPB.read()
-        # print(content)
-        excelConfig1 = excelConfig.ParseFromString(content)
+        excelConfig.ParseFromString(content)
 
 def write2File():
     excelConfig = config_pb2.ExcelConfig()
@@ -48,7 +47,7 @@ def readFromPythonFile():
         biyunLevel2 = excelConfig2.biyunLevels[0]
         print("Python: " + str(biyunLevel2.level))
 
-# readFromFile()
+readFromFile()
 write2File()
 readFromPythonFile()
 readFromJavaFile()
