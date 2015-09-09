@@ -18,7 +18,15 @@ def readFromFile():
     with open("../../main/resources/data.pb", 'rb') as dapaPB:
         content = dapaPB.read()
         # print(content)
+        excelConfig1 = excelConfig.ParseFromString(content)
+
+def readFromJavaFile():
+    excelConfig = config_pb2.ExcelConfig()
+    with open("../java/data.txt", 'rb') as dapaPB:
+        content = dapaPB.read()
         excelConfig.ParseFromString(content)
+        biyunLevel1 = excelConfig.biyunLevels[0]
+        print(biyunLevel1.level)
 
 def readFromMemory():
     excelConfig = config_pb2.ExcelConfig()
@@ -46,6 +54,7 @@ def readFromMemory():
         biyunLevel2 = excelConfig2.biyunLevels[0]
         print(biyunLevel2.level)
 
-readFromMemory()
+# readFromMemory()
 # readFromFile()
+readFromJavaFile()
 

@@ -2,6 +2,7 @@ import com.google.protobuf.ByteString;
 import org.apache.commons.io.FileUtils;
 import org.junit.Ignore;
 import org.junit.Test;
+import wang.gnim.excel.BiyunLevel;
 import wang.gnim.excel.Config;
 
 import java.io.*;
@@ -65,6 +66,37 @@ public class ExcelConfigTest {
             Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(bytes);
             System.out.println(config1.getBiyunLevelsCount());
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testParseEncode() {
+        File file = new File(".\\src\\test\\python\\data.txt");
+        try(InputStream in = new FileInputStream(file)) {
+            Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(in);
+            System.out.println(config1.getBiyunLevelsCount());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testGenerate() {
+        BiyunLevel.biyunLevel level = BiyunLevel.biyunLevel.newBuilder().setLevel(123456).build();
+        Config.ExcelConfig config1 = Config.ExcelConfig.newBuilder()
+                .addBiyunLevels(level)
+                .build();
+
+        File file = new File(".\\src\\test\\java\\data.txt");
+        try(OutputStream out = new FileOutputStream(file)) {
+            out.write(config1.toByteArray());
+            out.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
