@@ -17,18 +17,19 @@ protoNames = []
 for root, dirs, files in os.walk(excelDirName):
     for file in files:
         data = xlrd.open_workbook(excelDirName + file)
+        protoFileName = file.split('.')[0]
 
         for table in data.sheets():
 
             fileShortName = table.name.encode("utf-8")
-            fileName = protobufDirName + fileShortName + ".proto"
+            fileName = protobufDirName + protoFileName + ".proto"
 
-            protoNames.append(fileShortName)
+            protoNames.append(protoFileName)
 
             with open(fileName, 'w+') as outFile:
                 outFile.write("option java_package = \"" + packageName + "\";\n")
                 outFile.write("\n")
-                # outFile.write("option java_outer_classname = \"" + fileShortName + "\";\n")
+                outFile.write("option java_outer_classname = \"" + fileShortName + "\";\n")
                 outFile.write("\n")
                 outFile.write("message "+ fileShortName +" { \n")
 
