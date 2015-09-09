@@ -53,13 +53,12 @@ for root, dirs, files in os.walk(excelDirName):
                     break
 
                 type = types[count]
+                count += 1
                 if hasattr(obj, title):
                     if type == "uint32":
                         setattr(add, title, (int)(cellValue))
                     elif type == "string":
                         setattr(add, title, (str)(cellValue))
-
-                count += 1
 
 with open("./src/main/resources/data.pb", 'w+') as dataFile:
     dataFile.write(configObj.SerializeToString())
