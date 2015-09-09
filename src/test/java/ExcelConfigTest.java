@@ -30,15 +30,25 @@ public class ExcelConfigTest {
     }
 
     @Test
-    public void testParse1() {
-        File file = new File(".\\src\\test\\java\\data.pb");
+    public void testParseByteString() {
+        File file = new File(".\\src\\test\\python\\data.pb");
         try(InputStream in = new FileInputStream(file)) {
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
             System.out.println(config.getBiyunLevelsCount());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testParseInputStream() {
+        File file = new File(".\\src\\test\\python\\data.pb");
+        try(InputStream in = new FileInputStream(file)) {
             Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(in);
             System.out.println(config1.getBiyunLevelsCount());
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
