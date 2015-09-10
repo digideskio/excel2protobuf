@@ -17,8 +17,8 @@ MKDIR  %pythonsHome%
 
 python readExcel2Protobuf.py %excelHome% %protobufHome% "wang.gnim.excel"
 
-echo protoc -I=%protobufHome% --java_out=%javaHome% --cpp_out=%cppHome% --python_out=%pythonsHome% %protobufHome%\*.proto
+protoc -I=%protobufHome% --java_out=%javaHome% --cpp_out=%cppHome% --python_out=%pythonsHome% %protobufHome%\*.proto
 
-echo python genDataFromExcelAndProtobuf.py %excelHome% %pythonsHome%
+python genDataFromExcelAndProtobuf.py %excelHome% %pythonsHome%
 
 pause

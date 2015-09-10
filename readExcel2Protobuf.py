@@ -26,12 +26,12 @@ def checkExcelFile(fileName):
     return 0
 
 for root, dirs, files in os.walk(excelDirName):
-    for file in files:
-        if checkExcelFile(file) == 0:
+    for excelFile in files:
+        if checkExcelFile(excelFile) == 0:
             continue
 
-        data = xlrd.open_workbook(excelDirName + file)
-        protoFileName = file.split('.')[0]
+        data = xlrd.open_workbook(excelDirName + excelFile)
+        protoFileName = excelFile.split('.')[0]
 
         for sheet in data.sheets():
             protoFileNames.append(protoFileName)

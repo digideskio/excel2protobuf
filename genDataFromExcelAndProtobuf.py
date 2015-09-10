@@ -9,9 +9,9 @@ import imp
 excelDirName = ""
 
 if len(sys.argv) > 1:
-    excelDirName = sys.argv[1] + "/"
+    excelDirName = sys.argv[1] + "\\"
 if len(sys.argv) > 2:
-    pythonDirName = sys.argv[2] + "/"
+    pythonDirName = sys.argv[2] + "\\"
     sys.path.append(pythonDirName)
 
 def loadObj(pythonFileName, className):
@@ -24,9 +24,22 @@ def loadObj(pythonFileName, className):
 
 configObj = loadObj("config", "ExcelConfig")
 
+def checkExcelFile(fileName):
+    array = fileName.split(".")
+    if len(array) < 2:
+        return 0
+
+    if array[1] == "xls":
+        return 1
+
+    return 0
+
 for root, dirs, files in os.walk(excelDirName):
 
     for excelFile in files:
+        if checkExcelFile(excelFile) == 0:
+            continue
+            
         excel = xlrd.open_workbook(excelDirName + excelFile)
 
         for sheet in excel.sheets():
