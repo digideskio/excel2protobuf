@@ -1,7 +1,6 @@
 
-set workbase=D:\workspace\百度云同步盘\project\github\excel2protobuf\trunk\
 set workbase=
-set excelHome=%workbase%excel
+set excelHome=%workbase%src\main\resources\
 set protobufHome=%workbase%src\main\protobuf
 set javaHome=%workbase%src\main\java
 set cppHome=%workbase%src\main\cpp
@@ -18,8 +17,8 @@ MKDIR  %pythonsHome%
 
 python readExcel2Protobuf.py %excelHome% %protobufHome% "wang.gnim.excel"
 
-protoc -I=%protobufHome% --java_out=%javaHome% --cpp_out=%cppHome% --python_out=%pythonsHome% %protobufHome%\*.proto
+echo protoc -I=%protobufHome% --java_out=%javaHome% --cpp_out=%cppHome% --python_out=%pythonsHome% %protobufHome%\*.proto
 
-python genDataFromExcelAndProtobuf.py %excelHome% %pythonsHome%
+echo python genDataFromExcelAndProtobuf.py %excelHome% %pythonsHome%
 
 pause

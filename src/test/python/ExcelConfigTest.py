@@ -47,7 +47,7 @@ def readFromPythonFile():
         biyunLevel2 = excelConfig2.Sheet1s[0]
         print("Python: " + str(biyunLevel2.level))
 
-# readFromFile()
+readFromFile()
 write2File()
 readFromPythonFile()
 readFromJavaFile()

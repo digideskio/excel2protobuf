@@ -6,17 +6,30 @@ import sys
 import os
 
 if len(sys.argv) > 1:
-    excelDirName = sys.argv[1] + "/"
+    excelDirName = sys.argv[1] + "\\"
 if len(sys.argv) > 2:
-    protobufDirName = sys.argv[2] + "/"
+    protobufDirName = sys.argv[2] + "\\"
 if len(sys.argv) > 3:
     packageName = sys.argv[3]
 
 protoFileNames = []
 protoMessageNames = []
 
+def checkExcelFile(fileName):
+    array = fileName.split(".")
+    if len(array) < 2:
+        return 0
+
+    if array[1] == "xls":
+        return 1
+
+    return 0
+
 for root, dirs, files in os.walk(excelDirName):
     for file in files:
+        if checkExcelFile(file) == 0:
+            continue
+
         data = xlrd.open_workbook(excelDirName + file)
         protoFileName = file.split('.')[0]
 
