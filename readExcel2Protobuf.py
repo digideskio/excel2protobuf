@@ -20,10 +20,10 @@ for root, dirs, files in os.walk(excelDirName):
         data = xlrd.open_workbook(excelDirName + file)
         protoFileName = file.split('.')[0]
 
-        for table in data.sheets():
+        for sheet in data.sheets():
             protoFileNames.append(protoFileName)
 
-            messageName = table.name.encode("utf-8")
+            messageName = sheet.name.encode("utf-8")
             protoMessageNames.append(messageName)
 
             fileName = protobufDirName + protoFileName + ".proto"
@@ -31,8 +31,8 @@ for root, dirs, files in os.walk(excelDirName):
                 outFile.write("option java_package = \"" + packageName + "\";\n\n")
                 outFile.write("message "+ messageName +" { \n")
 
-                titles = table.row_values(0)
-                types = table.row_values(1)
+                titles = sheet.row_values(0)
+                types = sheet.row_values(1)
                 count = 0
                 for title in titles:
                     if "" == title:

@@ -14,38 +14,34 @@ if len(sys.argv) > 2:
     pythonDirName = sys.argv[2] + "/"
     sys.path.append(pythonDirName)
 
-def loadObj(fileShortName, className):
+def loadObj(pythonFileName, className):
+    moduleName = pythonDirName + "/" + pythonFileName + "_pb2.py"
+    # print("moduleName : " + moduleName + "  pythonFileName: " + pythonFileName + "  className:" + className)
 
-    moduleName = pythonDirName + "/" + fileShortName + "_pb2.py"
-    # print("moduleName : " + moduleName + "  fileShortName: " + fileShortName + "  className:" + className)
-
-    module = imp.load_source(fileShortName, moduleName)
+    module = imp.load_source(pythonFileName, moduleName)
     claszz = getattr(module, className)
-    obj = claszz()
-    return obj
+    return claszz()
 
 configObj = loadObj("config", "ExcelConfig")
 
 for root, dirs, files in os.walk(excelDirName):
 
-    for file in files:
-        data = xlrd.open_workbook(excelDirName + file)
+    for excelFile in files:
+        excel = xlrd.open_workbook(excelDirName + excelFile)
 
-        for table in data.sheets():
+        for sheet in excel.sheets():
+            sheetName = sheet.name.encode("utf-8")
+            pythonFileName = excelFile.split('.')[0]
 
-            fileShortName = table.name.encode("utf-8")
+            obj = loadObj(pythonFileName, sheetName)
+            t1 = getattr(configObj, sheetName + "s")
 
-            fileShortName = file.split('.')[0]
-
-            obj = loadObj(fileShortName, fileShortName)
-            t1 = getattr(configObj, fileShortName + "s")
-
-            for index in range(3, table.nrows):
+            for index in range(3, sheet.nrows):
                 add = t1.add()
-                row = table.row_values(index)
+                row = sheet.row_values(index)
 
-                titles = table.row_values(0)
-                types = table.row_values(1)
+                titles = sheet.row_values(0)
+                types = sheet.row_values(1)
                 count = 0
                 for title in titles:
                     if "" == title:
