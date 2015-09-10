@@ -21,9 +21,9 @@ public class ExcelConfigTest {
             in.read();
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
-            System.out.println(config.getBiyunLevelsCount());
+            System.out.println(config.getSheet1SCount());
             Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(in);
-            System.out.println(config1.getBiyunLevelsCount());
+            System.out.println(config1.getSheet1SCount());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class ExcelConfigTest {
         try {
             byte[] bytes = FileUtils.readFileToByteArray(file);
             Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(bytes);
-            System.out.println(config1.getBiyunLevelsCount());
+            System.out.println(config1.getSheet1SCount());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -50,9 +50,9 @@ public class ExcelConfigTest {
 
     @Before
     public void generateFile() {
-        BiyunLevel.biyunLevel level = BiyunLevel.biyunLevel.newBuilder().setLevel(123456).build();
+        BiyunLevel.Sheet1 level = BiyunLevel.Sheet1.newBuilder().setLevel(123456).build();
         Config.ExcelConfig config = Config.ExcelConfig.newBuilder()
-                .addBiyunLevels(level)
+                .addSheet1S(level)
                 .build();
 
         File file = new File(".\\src\\test\\java\\data.pb");
@@ -73,7 +73,7 @@ public class ExcelConfigTest {
             in.read();
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
-            System.out.println("Python : " + config.getBiyunLevelsCount());
+            System.out.println("Python : " + config.getSheet1SCount());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -87,7 +87,7 @@ public class ExcelConfigTest {
         try(InputStream in = new FileInputStream(file)) {
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
-            System.out.println("Java : " + config.getBiyunLevelsCount());
+            System.out.println("Java : " + config.getSheet1SCount());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

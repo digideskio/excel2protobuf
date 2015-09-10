@@ -12,7 +12,8 @@ if len(sys.argv) > 2:
 if len(sys.argv) > 3:
     packageName = sys.argv[3]
 
-protoNames = []
+protoFileNames = []
+protoMessageNames = []
 
 for root, dirs, files in os.walk(excelDirName):
     for file in files:
@@ -20,18 +21,15 @@ for root, dirs, files in os.walk(excelDirName):
         protoFileName = file.split('.')[0]
 
         for table in data.sheets():
+            protoFileNames.append(protoFileName)
 
-            fileShortName = table.name.encode("utf-8")
+            messageName = table.name.encode("utf-8")
+            protoMessageNames.append(messageName)
+
             fileName = protobufDirName + protoFileName + ".proto"
-
-            protoNames.append(protoFileName)
-
             with open(fileName, 'w+') as outFile:
-                outFile.write("option java_package = \"" + packageName + "\";\n")
-                outFile.write("\n")
-                outFile.write("option java_outer_classname = \"" + fileShortName + "\";\n")
-                outFile.write("\n")
-                outFile.write("message "+ fileShortName +" { \n")
+                outFile.write("option java_package = \"" + packageName + "\";\n\n")
+                outFile.write("message "+ messageName +" { \n")
 
                 titles = table.row_values(0)
                 types = table.row_values(1)
@@ -49,22 +47,17 @@ count = 1
 configFileName = protobufDirName + "config.proto"
 with open(configFileName, 'w+') as configFile:
 
-    for protoName in protoNames:
-        configFile.write("import \"" + protoName + ".proto\";")
-        configFile.write("\n")
+    for protoName in protoFileNames:
+        configFile.write("import \"" + protoName + ".proto\";\n")
 
     configFile.write("\n")
 
-    configFile.write("option java_package = \"" + packageName + "\";\n")
-    configFile.write("\n")
-    # configFile.write("option java_outer_classname = \"Config\";\n")
-    # configFile.write("\n")
+    configFile.write("option java_package = \"" + packageName + "\";\n\n")
 
     configFile.write("message ExcelConfig { \n")
 
-    for protoName in protoNames:
-        configFile.write("    repeated " + protoName + " " + protoName + "s = " + str(count) + ";")
+    for protoMessageName in protoMessageNames:
+        configFile.write("    repeated " + protoMessageName + " " + protoMessageName + "s = " + str(count) + ";\n")
         count += 1
 
-    configFile.write("\n")
     configFile.write("}\n")
