@@ -38,26 +38,30 @@ for root, dirs, files in os.walk(excelDirName):
 
             for index in range(3, sheet.nrows):
                 add = t1.add()
-                row = sheet.row_values(index)
+                dataRow = sheet.row_values(index)
 
                 titles = sheet.row_values(0)
                 types = sheet.row_values(1)
-                count = 0
+                cellCount = 0
                 for title in titles:
                     if "" == title:
                         continue
 
-                    cellValue = row[count]
+                    cellValue = dataRow[cellCount]
                     if cellValue == "":
                         break
 
-                    type = types[count]
-                    count += 1
+                    type = types[cellCount]
+                    cellCount += 1
                     if hasattr(obj, title):
                         if type == "uint32":
                             setattr(add, title, (int)(cellValue))
                         elif type == "string":
                             setattr(add, title, (str)(cellValue))
+                        elif type == "array,int":
+                            print()
+                        elif type == "array,string":
+                            print()
 
 with open("./src/main/resources/data.pb", 'w+') as dataFile:
     dataFile.write(configObj.SerializeToString())
