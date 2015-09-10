@@ -22,9 +22,9 @@ public class ExcelConfigTest {
             ByteString bs = ByteString.readFrom(in);
             Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
             System.out.println(config.getSheet1SCount());
-            Config.ExcelConfig config1 = Config.ExcelConfig.parseFrom(in);
-            System.out.println(config1.getSheet1SCount());
-
+            for (BiyunLevel.Sheet1 sheet1 : config.getSheet1SList()) {
+                System.out.println(sheet1.getLevel() + "   " + sheet1.getStar1());
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -50,9 +50,11 @@ public class ExcelConfigTest {
 
     @Before
     public void generateFile() {
-        BiyunLevel.Sheet1 level = BiyunLevel.Sheet1.newBuilder().setLevel(123456).build();
+        BiyunLevel.Sheet1 level1 = BiyunLevel.Sheet1.newBuilder().setLevel(1).setStar1(30).build();
+        BiyunLevel.Sheet1 level2 = BiyunLevel.Sheet1.newBuilder().setLevel(2).setStar1(30).build();
         Config.ExcelConfig config = Config.ExcelConfig.newBuilder()
-                .addSheet1S(level)
+                .addSheet1S(level1)
+                .addSheet1S(level2)
                 .build();
 
         File file = new File(".\\src\\test\\java\\data.pb");

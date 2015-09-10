@@ -17,7 +17,8 @@ def readFromFile():
     excelConfig = config_pb2.ExcelConfig()
     with open("../../main/resources/data.pb", 'rb') as dapaPB:
         content = dapaPB.read()
-        excelConfig.ParseFromString(content)
+        excelConfig2 = excelConfig.ParseFromString(content)
+        print("resource: " + bytes(excelConfig2))
 
 def write2File():
     excelConfig = config_pb2.ExcelConfig()

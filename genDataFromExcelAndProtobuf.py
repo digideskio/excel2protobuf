@@ -39,7 +39,7 @@ for root, dirs, files in os.walk(excelDirName):
     for excelFile in files:
         if checkExcelFile(excelFile) == 0:
             continue
-            
+
         excel = xlrd.open_workbook(excelDirName + excelFile)
 
         for sheet in excel.sheets():
@@ -49,7 +49,8 @@ for root, dirs, files in os.walk(excelDirName):
             obj = loadObj(pythonFileName, sheetName)
             t1 = getattr(configObj, sheetName + "s")
 
-            for index in range(3, sheet.nrows):
+            print(sheet.nrows)
+            for index in range(2, sheet.nrows):
                 add = t1.add()
                 dataRow = sheet.row_values(index)
 
