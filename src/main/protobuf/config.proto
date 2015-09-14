@@ -1,0 +1,7 @@
+import "BiyunLevel.proto";
+
+option java_package = "wang.gnim.excel";
+
+message ExcelConfig { 
+    repeated Sheet1 Sheet1s = 1;
+}

@@ -1,0 +1,6 @@
+option java_package = "wang.gnim.excel";
+
+message Sheet1 { 
+    optional uint32 level = 1;
+    optional uint32 star1 = 2;
+}
