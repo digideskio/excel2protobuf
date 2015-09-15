@@ -77,7 +77,7 @@ for root, dirs, files in os.walk(excelDirName):
                         elif type == "array,string":
                             print()
 
-with open("./src/main/resources/data.pb", 'w+') as dataFile:
+with open("./src/main/resources/data.pb", 'wb') as dataFile:
     dataFile.write(configObj.SerializeToString())
 
 with open("./src/main/resources/data.txt", 'w+') as dataFile:

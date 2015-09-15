@@ -28,7 +28,7 @@ def write2File():
 
     content = excelConfig.SerializeToString()
 
-    with open("./data.pb", 'w+') as dapaPB:
+    with open("./data.pb", 'wb') as dapaPB:
         dapaPB.write(content)
 
 def readFromJavaFile():
@@ -41,7 +41,7 @@ def readFromJavaFile():
 
 def readFromPythonFile():
     write2File();
-    with open("./data.pb", 'r+') as dapaPB:
+    with open("./data.pb", 'rb') as dapaPB:
         content1 = dapaPB.read()
         excelConfig2 = config_pb2.ExcelConfig()
         excelConfig2.ParseFromString(content1)
