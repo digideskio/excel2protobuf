@@ -1,19 +1,67 @@
-# ËµÃ÷
+# è¯´æ˜
 
-### °²×°
-* ĞèÒª°²×°[xlrd](https://pypi.python.org/pypi/xlrd)
-* ÏÂÔØ[protobuf](https://developers.google.com/protocol-buffers/docs/downloads?hl=zh-cn)
-* ÔÚ»·¾³Â·¾¶ÖĞÌí¼Ó'protoc'(µ±Ç°°æ±¾ÊÇ2.6.1)
-* ÔÚÄ¿Â¼`protobuf-2.6.1/python`Ö´ĞĞ
+### å®‰è£…
+* éœ€è¦å®‰è£…[xlrd](https://pypi.python.org/pypi/xlrd)
+* ä¸‹è½½[protobuf](https://developers.google.com/protocol-buffers/docs/downloads?hl=zh-cn)
+* åœ¨ç¯å¢ƒè·¯å¾„ä¸­æ·»åŠ 'protoc'(å½“å‰ç‰ˆæœ¬æ˜¯2.6.1)
+* åœ¨ç›®å½•`protobuf-2.6.1/python`æ‰§è¡Œ
 ```
 	python setup.py build
 	python setup.py google_test
 	python setup.py install
 ```
 	
-### ExcelÎÄ¼şËµÃ÷
-* excelÎÄ¼şµÚÒ»ĞĞÊÇprotoÎÄ¼şµÄ×Ö¶ÎÃû(×Ö¶ÎÃûÇ¿ÁÒ½¨Òé²ÉÓÃÍÕ·åÊ½Ğ´·¨,µÚÒ»¸ö×ÖÄ¸´óĞ´)
-* excelÎÄ¼şµÚ¶şĞĞÊÇprotoÎÄ¼şµÄ×Ö¶ÎÀàĞÍ
-* excelÎÄ¼şÃûÇ¿ÁÒ½¨Òé²ÉÓÃÍÕ·åÊ½Ğ´·¨,µÚÒ»¸ö×ÖÄ¸´óĞ´
-* excelÎÄ¼şÃû±ØĞëÊÇÓ¢ÎÄ¼ÓÊı×Ö,ÖĞÎÄÃû»á¹ıÂËµô
+### ä¸¾ä¾‹è¯´æ˜
+å‡è®¾æˆ‘ä»¬æœ‰ä¸€ä¸ª`BiyunLevel.xls`çš„æ–‡ä»¶, è¿™ä¸ªæ–‡ä»¶åªæœ‰ä¸€ä¸ªè¡¨å•`Sheet1`. 
+```
+|level	|star1	|
+-----------------
+|uint32	|uint32	|
+-----------------
+|1		|30		|
+-----------------
+|2		|30		|
+-----------------
+```
+å®ƒä¼šç”Ÿæˆæ–‡ä»¶åä¸º`BiyunLevel.proto`çš„protoæ–‡ä»¶
+```
+message Sheet1 { 
+    optional uint32 level = 1;
+    optional uint32 star1 = 2;
+}
+```
 
+#### Excelæ–‡ä»¶ç»“æ„è¯´æ˜
+* excelæ–‡ä»¶çš„sheetåä¸ºprotoæ–‡ä»¶å†…çš„messageåç§°.(ä¸­æ–‡åè¿‡æ»¤TODO)
+* excelæ–‡ä»¶ç¬¬ä¸€è¡Œä¸ºæ ‡é¢˜å,ä¼šä½œä¸ºmessageå†…éƒ¨çš„å˜é‡å(å¿…é¡»ä¸ºè‹±æ–‡,å¼ºçƒˆå»ºè®®é‡‡ç”¨é©¼å³°å¼å†™æ³•)
+* excelæ–‡ä»¶ç¬¬äºŒè¡Œæ˜¯messageçš„å­—æ®µç±»å‹
+
+#### config.protoæ–‡ä»¶ç”Ÿæˆ
+æˆ‘ä»¬é»˜è®¤è¿˜ç”Ÿæˆä¸€ä¸ª`config.proto`çš„æ–‡ä»¶.
+```
+import "BiyunLevel.proto";
+
+message ExcelConfig { 
+    repeated Sheet1 Sheet1s = 1;
+}
+```
+`ExcelConfig`æ¯ä¸ªå­—æ®µç±»å‹å¯¹åº”çš„éƒ½æ˜¯excelæ–‡ä»¶å†…çš„sheet.
+
+#### javaä»£ç å®ä¾‹
+ä¸‹é¢ä¸¾ä¾‹å¦‚ä½•å¼•ç”¨
+```java
+		File file = new File(".\\src\\main\\resources\\data.pb");
+        try(InputStream in = new FileInputStream(file)) {
+            in.read();
+            ByteString bs = ByteString.readFrom(in);
+            Config.ExcelConfig config = Config.ExcelConfig.parseFrom(bs);
+            System.out.println(config.getSheet1SCount());
+            for (BiyunLevel.Sheet1 sheet1 : config.getSheet1SList()) {
+                System.out.println(sheet1.getLevel() + "   " + sheet1.getStar1());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+```
