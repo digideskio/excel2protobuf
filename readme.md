@@ -49,8 +49,8 @@ message ExcelConfig {
 
 #### 第二行的类型
 除了支持protobuf支持的类型的之外,我们还内置了对列表和映射的支持
-* 列表类型名为`intArray`或者`stringArray`, 数据间采用`|`进行分割, 例如`1|2|3`, `"abs"|"2313"`
-* 映射类型可以为`int|string`, `int|int`, `string|int`, `string|string`, 例如`int|int`数据为`123,456|789,741` 这个结构可以解释为`{123:456, 789:741}`
+* (TODO) 列表类型名为`intArray`或者`stringArray`, 数据间采用`|`进行分割, 例如`1|2|3`, `"abs"|"2313"`
+* (TODO) 映射类型可以为`int|string`, `int|int`, `string|int`, `string|string`, 例如`int|int`数据为`123,456|789,741` 这个结构可以解释为`{123:456, 789:741}`
 
 #### java代码实例
 下面举例如何引用
